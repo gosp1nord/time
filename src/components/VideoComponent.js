@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import convertDates from './converter';
 
-function WithDateTime() {
-  const Component = ({date}) => {
+function WithDateTime(WrappedComponent) {
+  const NewComponent = ({date}) => {
+    const newProps = {date: convertDates(date)}
     return (
       <>
-      <DateTime date={convertDates(date)} />
+      <WrappedComponent {...newProps} />
       </>
     )
   }
-  return Component
+  return NewComponent
 }
-const DateTimePretty = WithDateTime()
+const DateTimePretty = WithDateTime(DateTime)
 
 function DateTime(props) {
   return (
